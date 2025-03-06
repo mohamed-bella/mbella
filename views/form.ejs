@@ -1,0 +1,358 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main class="flex-grow py-8">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+      <h1 class="text-3xl font-bold mb-6 text-center text-blue-800">Formulaire de Demande de Site Web pour Hôtel</h1>
+      <p class="text-gray-600 mb-8 text-center">Veuillez remplir ce formulaire pour nous aider à comprendre vos besoins pour la création du site web de votre hôtel.</p>
+      
+      <% if (typeof error !== 'undefined') { %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+          <%= error %>
+        </div>
+      <% } %>
+      
+      <form action="/form" method="POST" class="space-y-6">
+        <!-- Informations sur l'hôtel -->
+        <div class="border-b pb-6 mb-6">
+          <h2 class="text-xl font-bold mb-4 text-blue-700">Informations sur l'Hôtel</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="nomHotel" class="block text-gray-700 font-medium mb-2">Nom de l'hôtel *</label>
+              <input type="text" id="nomHotel" name="nomHotel" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="<%= typeof formData !== 'undefined' ? formData.nomHotel : '' %>">
+            </div>
+            
+            <div>
+              <label for="nombreEtoiles" class="block text-gray-700 font-medium mb-2">Nombre d'étoiles *</label>
+              <select id="nombreEtoiles" name="nombreEtoiles" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Sélectionnez</option>
+                <option value="1" <%= typeof formData !== 'undefined' && formData.nombreEtoiles === '1' ? 'selected' : '' %>>1 étoile</option>
+                <option value="2" <%= typeof formData !== 'undefined' && formData.nombreEtoiles === '2' ? 'selected' : '' %>>2 étoiles</option>
+                <option value="3" <%= typeof formData !== 'undefined' && formData.nombreEtoiles === '3' ? 'selected' : '' %>>3 étoiles</option>
+                <option value="4" <%= typeof formData !== 'undefined' && formData.nombreEtoiles === '4' ? 'selected' : '' %>>4 étoiles</option>
+                <option value="5" <%= typeof formData !== 'undefined' && formData.nombreEtoiles === '5' ? 'selected' : '' %>>5 étoiles</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <label for="adresse" class="block text-gray-700 font-medium mb-2">Adresse *</label>
+            <input type="text" id="adresse" name="adresse" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value="<%= typeof formData !== 'undefined' ? formData.adresse : '' %>">
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <label for="ville" class="block text-gray-700 font-medium mb-2">Ville *</label>
+              <input type="text" id="ville" name="ville" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="<%= typeof formData !== 'undefined' ? formData.ville : '' %>">
+            </div>
+            
+            <div>
+              <label for="pays" class="block text-gray-700 font-medium mb-2">Pays *</label>
+              <input type="text" id="pays" name="pays" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="<%= typeof formData !== 'undefined' ? formData.pays : '' %>">
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <label for="telephone" class="block text-gray-700 font-medium mb-2">Téléphone *</label>
+              <input type="tel" id="telephone" name="telephone" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="<%= typeof formData !== 'undefined' ? formData.telephone : '' %>">
+            </div>
+            
+            <div>
+              <label for="email" class="block text-gray-700 font-medium mb-2">Email *</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="<%= typeof formData !== 'undefined' ? formData.email : '' %>">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Caractéristiques du site web -->
+        <div class="border-b pb-6 mb-6">
+          <h2 class="text-xl font-bold mb-4 text-blue-700">Caractéristiques du Site Web</h2>
+          
+          <div>
+            <label class="block text-gray-700 font-medium mb-2">Style du site souhaité *</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="styles" value="moderne" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Moderne</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="styles" value="elegant" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Élégant</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="styles" value="luxueux" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Luxueux</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="styles" value="minimaliste" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Minimaliste</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="styles" value="rustique" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Rustique/Chaleureux</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="styles" value="autre" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Autre</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6">
+            <label class="block text-gray-700 font-medium mb-2">Fonctionnalités requises *</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="reservation" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Système de réservation</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="galerie" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Galerie photo</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="multilangue" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Site multilingue</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="blog" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Blog/Actualités</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="contact" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Formulaire de contact</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="visite" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Visite virtuelle</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="reseaux" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Intégration réseaux sociaux</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="carte" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Carte interactive</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="fonctionnalitesRequises" value="avis" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Avis clients</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Informations sur l'hébergement -->
+        <div class="border-b pb-6 mb-6">
+          <h2 class="text-xl font-bold mb-4 text-blue-700">Informations sur l'Hébergement</h2>
+          
+          <div>
+            <label for="nombreChambres" class="block text-gray-700 font-medium mb-2">Nombre de chambres *</label>
+            <input type="number" id="nombreChambres" name="nombreChambres" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value="<%= typeof formData !== 'undefined' ? formData.nombreChambres : '' %>">
+          </div>
+          
+          <div class="mt-4">
+            <label class="block text-gray-700 font-medium mb-2">Types de chambres *</label>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="typesChambres" value="standard" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Standard</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="typesChambres" value="deluxe" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Deluxe</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="typesChambres" value="suite" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Suite</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="typesChambres" value="familiale" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Familiale</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="typesChambres" value="presidentielle" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Présidentielle</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="typesChambres" value="autre" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Autre</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <label class="block text-gray-700 font-medium mb-2">Services supplémentaires</label>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="servicesSupplementaires" value="piscine" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Piscine</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="servicesSupplementaires" value="spa" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Spa</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="servicesSupplementaires" value="restaurant" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Restaurant</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="servicesSupplementaires" value="bar" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Bar</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="servicesSupplementaires" value="gym" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Salle de sport</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" name="servicesSupplementaires" value="conference" class="form-checkbox text-blue-600">
+                  <span class="ml-2">Salles de conférence</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <label for="informationsRestaurant" class="block text-gray-700 font-medium mb-2">Informations sur le restaurant (si applicable)</label>
+            <textarea id="informationsRestaurant" name="informationsRestaurant" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"><%= typeof formData !== 'undefined' ? formData.informationsRestaurant : '' %></textarea>
+          </div>
+          
+          <div class="mt-4">
+            <label for="informationsSpaBienEtre" class="block text-gray-700 font-medium mb-2">Informations sur le spa/bien-être (si applicable)</label>
+            <textarea id="informationsSpaBienEtre" name="informationsSpaBienEtre" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"><%= typeof formData !== 'undefined' ? formData.informationsSpaBienEtre : '' %></textarea>
+          </div>
+        </div>
+        
+        <!-- Budget et délai -->
+        <div class="border-b pb-6 mb-6">
+          <h2 class="text-xl font-bold mb-4 text-blue-700">Budget et Délai</h2>
+          
+          <div>
+            <label for="budget" class="block text-gray-700 font-medium mb-2">Budget approximatif *</label>
+            <select id="budget" name="budget" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Sélectionnez</option>
+              <option value="moins-1000" <%= typeof formData !== 'undefined' && formData.budget === 'moins-1000' ? 'selected' : '' %>>Moins de 1 000 €</option>
+              <option value="1000-3000" <%= typeof formData !== 'undefined' && formData.budget === '1000-3000' ? 'selected' : '' %>>1 000 € - 3 000 €</option>
+              <option value="3000-5000" <%= typeof formData !== 'undefined' && formData.budget === '3000-5000' ? 'selected' : '' %>>3 000 € - 5 000 €</option>
+              <option value="5000-10000" <%= typeof formData !== 'undefined' && formData.budget === '5000-10000' ? 'selected' : '' %>>5 000 € - 10 000 €</option>
+              <option value="plus-10000" <%= typeof formData !== 'undefined' && formData.budget === 'plus-10000' ? 'selected' : '' %>>Plus de 10 000 €</option>
+            </select>
+          </div>
+          
+          <div class="mt-4">
+            <label for="delai" class="block text-gray-700 font-medium mb-2">Délai souhaité pour la mise en ligne *</label>
+            <select id="delai" name="delai" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Sélectionnez</option>
+              <option value="1-mois" <%= typeof formData !== 'undefined' && formData.delai === '1-mois' ? 'selected' : '' %>>Moins d'1 mois</option>
+              <option value="1-2-mois" <%= typeof formData !== 'undefined' && formData.delai === '1-2-mois' ? 'selected' : '' %>>1-2 mois</option>
+              <option value="2-3-mois" <%= typeof formData !== 'undefined' && formData.delai === '2-3-mois' ? 'selected' : '' %>>2-3 mois</option>
+              <option value="3-6-mois" <%= typeof formData !== 'undefined' && formData.delai === '3-6-mois' ? 'selected' : '' %>>3-6 mois</option>
+              <option value="plus-6-mois" <%= typeof formData !== 'undefined' && formData.delai === 'plus-6-mois' ? 'selected' : '' %>>Plus de 6 mois</option>
+            </select>
+          </div>
+          
+          <div class="mt-4">
+            <label for="commentairesSupplementaires" class="block text-gray-700 font-medium mb-2">Commentaires supplémentaires</label>
+            <textarea id="commentairesSupplementaires" name="commentairesSupplementaires" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"><%= typeof formData !== 'undefined' ? formData.commentairesSupplementaires : '' %></textarea>
+          </div>
+        </div>
+        
+        <!-- Informations de contact -->
+        <div>
+          <h2 class="text-xl font-bold mb-4 text-blue-700">Informations de Contact</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="nomContact" class="block text-gray-700 font-medium mb-2">Nom du contact *</label>
+              <input type="text" id="nomContact" name="nomContact" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="<%= typeof formData !== 'undefined' ? formData.nomContact : '' %>">
+            </div>
+            
+            <div>
+              <label for="emailContact" class="block text-gray-700 font-medium mb-2">Email du contact *</label>
+              <input type="email" id="emailContact" name="emailContact" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="<%= typeof formData !== 'undefined' ? formData.emailContact : '' %>">
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <label for="telephoneContact" class="block text-gray-700 font-medium mb-2">Téléphone du contact *</label>
+            <input type="tel" id="telephoneContact" name="telephoneContact" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value="<%= typeof formData !== 'undefined' ? formData.telephoneContact : '' %>">
+          </div>
+        </div>
+        
+        <!-- Bouton de soumission -->
+        <div class="mt-8 text-center">
+          <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+            Soumettre la demande
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %> 
