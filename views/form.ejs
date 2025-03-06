@@ -293,11 +293,11 @@
             <label for="budget" class="block text-gray-700 font-medium mb-2">Budget approximatif *</label>
             <select id="budget" name="budget" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">Sélectionnez</option>
-              <option value="moins-1000" <%= typeof formData !== 'undefined' && formData.budget === 'moins-1000' ? 'selected' : '' %>>Moins de 1 000 €</option>
-              <option value="1000-3000" <%= typeof formData !== 'undefined' && formData.budget === '1000-3000' ? 'selected' : '' %>>1 000 € - 3 000 €</option>
-              <option value="3000-5000" <%= typeof formData !== 'undefined' && formData.budget === '3000-5000' ? 'selected' : '' %>>3 000 € - 5 000 €</option>
-              <option value="5000-10000" <%= typeof formData !== 'undefined' && formData.budget === '5000-10000' ? 'selected' : '' %>>5 000 € - 10 000 €</option>
-              <option value="plus-10000" <%= typeof formData !== 'undefined' && formData.budget === 'plus-10000' ? 'selected' : '' %>>Plus de 10 000 €</option>
+              <option value="moins-1000" <%= typeof formData !== 'undefined' && formData.budget === 'moins-1000' ? 'selected' : '' %>>Moins de 1 000 dh</option>
+              <option value="1000-3000" <%= typeof formData !== 'undefined' && formData.budget === '1000-3000' ? 'selected' : '' %>>1 000 dh - 3 000 dh</option>
+              <option value="3000-5000" <%= typeof formData !== 'undefined' && formData.budget === '3000-5000' ? 'selected' : '' %>>3 000 dh - 5 000 dh</option>
+              <option value="5000-10000" <%= typeof formData !== 'undefined' && formData.budget === '5000-10000' ? 'selected' : '' %>>5 000 dh - 10 000 dh</option>
+              <option value="plus-10000" <%= typeof formData !== 'undefined' && formData.budget === 'plus-10000' ? 'selected' : '' %>>Plus de 10 000 dh</option>
             </select>
           </div>
           
